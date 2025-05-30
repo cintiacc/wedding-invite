@@ -33,7 +33,7 @@
   <!-- Nova seção Nossa História -->
   <section
     ref="historia"
-    class="max-w-4xl mx-auto px-6 py-20 opacity-0 translate-y-10 transition-opacity transition-transform duration-700"
+    class="mx-auto px-6 py-20 bg-[#eddfd4] opacity-0 translate-y-10 transition-opacity transition-transform duration-700"
   >
     <h3 class="text-3xl font-playfair mb-6 text-center">Nossa História</h3>
     <p class="text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
@@ -103,10 +103,40 @@
     </div>
   </div>
 </section>
+<section class="bg-[#eddfd4] py-20 px-6 text-center">
+  <h3 class="text-3xl font-playfair mb-10">Confirmação de Presença</h3>
+
+  <div class="bg-[#fffaf0] relative max-w-md mx-auto bg-white border border-gray-300 rounded-xl shadow-lg p-10">
+    <p class="mb-6 text-gray-700">
+      Por favor, confirme sua presença até 01/09/2025
+    </p>
+    <ButtonComponent as="router-link" :to="'/contato'">
+      Confirmar Presença
+    </ButtonComponent>
+  </div>
+</section>
+
+<section class="py-20 text-center">
+    <InstagramGallery />
+</section>
+
+<section class="bg-[#eddfd4] py-20 px-6 text-center">
+  <h3 class="text-3xl font-playfair mb-10">Quer nos presentar?</h3>
+    <p class="mb-6 text-gray-700">
+      Veja nossa lista de presentes e contribua com o que desejar.
+    </p>
+    <ButtonComponent as="router-link" :to="'/contato'">
+      Visualizar lista
+    </ButtonComponent>
+</section>
 
 
 </template>
 <script>
+import InstagramGallery from '../components/InstagramGallery.vue';
+import ButtonComponent from '../components/ButtonComponent.vue';
+
+
 export default {
   name: 'Home',
   mounted() {
@@ -127,6 +157,10 @@ export default {
     reveal(this.$refs.historia);
     reveal(this.$refs.noivos); // nova seção
   },
+  components: {
+    InstagramGallery,
+    ButtonComponent
+  }
 };
 </script>
 
