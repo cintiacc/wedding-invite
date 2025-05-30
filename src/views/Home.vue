@@ -107,6 +107,7 @@
   <h3 class="text-3xl font-playfair mb-10">Confirmação de Presença</h3>
 
   <div class="bg-[#fffaf0] relative max-w-md mx-auto bg-white border border-gray-300 rounded-xl shadow-lg p-10">
+    <span class="material-symbols-outlined">mail</span>
     <p class="mb-6 text-gray-700">
       Por favor, confirme sua presença até 01/09/2025
     </p>
@@ -122,6 +123,7 @@
 
 <section class="bg-[#eddfd4] py-20 px-6 text-center">
   <h3 class="text-3xl font-playfair mb-10">Quer nos presentar?</h3>
+    <span class="material-symbols-outlined">featured_seasonal_and_gifts</span>
     <p class="mb-6 text-gray-700">
       Veja nossa lista de presentes e contribua com o que desejar.
     </p>
@@ -130,11 +132,19 @@
     </ButtonComponent>
 </section>
 
+<section>
+  <div>
+    <CountdownComponent />
+  </div>
+</section>
+
 
 </template>
 <script>
 import InstagramGallery from '../components/InstagramGallery.vue';
 import ButtonComponent from '../components/ButtonComponent.vue';
+import CountdownComponent from '../components/CountdownComponent.vue';
+
 
 
 export default {
@@ -159,7 +169,8 @@ export default {
   },
   components: {
     InstagramGallery,
-    ButtonComponent
+    ButtonComponent,
+    CountdownComponent
   }
 };
 </script>
