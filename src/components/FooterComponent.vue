@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-pink-50 text-pink-800 py-8">
+  <footer class="bg-[#eddfd4] text-pink-800 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
       
       <!-- Redes sociais -->
