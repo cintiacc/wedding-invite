@@ -9,10 +9,17 @@
     <div class="ml-4 flex flex-col justify-between w-full">
       <div>
         <h2 class="text-base font-semibold text-gray-800">{{ title }}</h2>
-        <p class="text-xs text-gray-500">{{ subtitle }}</p>
       </div>
-      <div class="mt-2">
-        <ButtonComponent>
+
+      <div v-if="showButton && subtitle" class="mt-2 flex gap-2">
+        <a :href="subtitle" target="_blank" rel="noopener noreferrer">
+          <ButtonComponent>
+            Visualizar site
+          </ButtonComponent>
+        </a>
+
+        <!-- Botão de dar presente -->
+        <ButtonComponent @click="$emit('dar-presente')">
           Dar presente
         </ButtonComponent>
       </div>
@@ -31,7 +38,12 @@ export default {
   props: {
     imageSrc: String,
     title: String,
-    subtitle: String
-  }
+    subtitle: String,
+    showButton: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: ['dar-presente']
 };
 </script>
