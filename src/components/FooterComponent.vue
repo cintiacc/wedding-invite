@@ -1,9 +1,9 @@
 <template>
-  <footer class="bg-[#eddfd4] text-pink-800 py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-      
-      <!-- Redes sociais -->
-      <div class="flex space-x-6">
+  <footer class="bg-[#eddfd4] py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+
+      <!-- Coluna 1: Redes sociais -->
+      <div class="flex justify-center md:justify-start space-x-6">
         <!-- Instagram Ana -->
         <a href="https://instagram.com/ana" target="_blank" rel="noopener" aria-label="Instagram Ana" class="hover:text-pink-600 transition">
           <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -21,17 +21,23 @@
         </a>
       </div>
 
-      <!-- Contato Cerimonialista -->
+      <!-- Coluna 2: Contato Cerimonialista -->
       <div class="text-center md:text-left space-y-1">
         <p class="font-semibold">Contato Cerimonialista</p>
         <p>Email: <a href="mailto:cerimonialista@email.com" class="underline hover:text-pink-600">cerimonialista@email.com</a></p>
         <p>Tel: <a href="tel:+5511999999999" class="underline hover:text-pink-600">+55 11 99999-9999</a></p>
       </div>
 
-      <!-- Mensagem / copyright -->
-      <div class="text-sm text-pink-700 mt-4 md:mt-0">
-        ❤️ Feito com carinho para Gabi & Jonas - 2025
+      <!-- Coluna 3: Mensagem / copyright -->
+      <div class="text-center md:text-right">
+        <p>
+          Noivo ou Noiva? 
+          <router-link to="/login" class="underline hover:text-pink-800">
+            Faça Login aqui
+          </router-link>
+        </p>
       </div>
+
     </div>
   </footer>
 </template>
