@@ -127,7 +127,7 @@
     <p class="mb-6 text-gray-700">
       Veja nossa lista de presentes e contribua com o que desejar.
     </p>
-    <ButtonComponent as="router-link" :to="'/contato'">
+    <ButtonComponent as="router-link" :to="'/Gifts'">
       Visualizar lista
     </ButtonComponent>
 </section>
