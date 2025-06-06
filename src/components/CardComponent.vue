@@ -1,49 +1,39 @@
 <template>
-  <div class="flex items-center bg-white rounded-2xl shadow-md overflow-hidden p-4 w-full max-w-md mx-auto h-40">
+  <div class="flex bg-white shadow-md rounded-xl p-4 gap-4 items-start">
     <!-- Imagem -->
-    <div class="w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden">
-      <img :src="imageSrc" alt="Thumbnail" class="object-cover w-full h-full" />
-    </div>
+    <img :src="imageSrc" alt="Imagem do presente" class="w-24 h-24 object-cover rounded-lg" />
 
-    <!-- Conteúdo -->
-    <div class="ml-4 flex flex-col justify-between w-full">
-      <div>
-        <h2 class="text-base font-semibold text-gray-800">{{ title }}</h2>
+    <!-- Conteúdo e botões -->
+    <div class="flex flex-1 justify-between items-start">
+      <!-- Título -->
+      <div class="flex flex-col">
+        <h3 class="text-lg font-semibold text-gray-800">{{ title }}</h3>
+        <!-- <p class="text-sm text-gray-500 truncate">{{ subtitle }}</p> -->
       </div>
 
-      <div v-if="showButton && subtitle" class="mt-2 flex gap-2">
-        <a :href="subtitle" target="_blank" rel="noopener noreferrer">
-          <ButtonComponent>
-            Visualizar site
-          </ButtonComponent>
-        </a>
-
-        <!-- Botão de dar presente -->
-        <ButtonComponent @click="$emit('dar-presente')">
-          Dar presente
-        </ButtonComponent>
+      <!-- Botões -->
+      <div class="flex gap-2">
+        <button @click="$emit('editar')" class="text-blue-600 hover:text-blue-800">
+          <span class="material-icons">edit</span>
+        </button>
+        <button @click="$emit('deletar')" class="text-red-600 hover:text-red-800">
+          <span class="material-icons">close</span>
+        </button>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import ButtonComponent from './ButtonComponent.vue';
+<script setup lang="ts">
+defineProps<{
+  imageSrc: string
+  title: string
+  subtitle?: string
+}>()
 
-export default {
-  name: 'CardComponent',
-  components: {
-    ButtonComponent,
-  },
-  props: {
-    imageSrc: String,
-    title: String,
-    subtitle: String,
-    showButton: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: ['dar-presente']
-};
+defineEmits(['editar', 'deletar'])
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+</style>

@@ -90,6 +90,6 @@ const {
   form,
   adicionarAcompanhante,
   removerUltimoAcompanhante,
-  enviarFormulario,
+  enviarFormulario
 } = useFormulario()
 </script>
