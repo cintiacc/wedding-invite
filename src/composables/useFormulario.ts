@@ -1,5 +1,6 @@
 // useFormulario.ts
 import { reactive } from 'vue'
+import { showAlert } from '../utils/alert';
 
 export default function useFormulario() {
   const form = reactive({
@@ -32,7 +33,13 @@ export default function useFormulario() {
 
       const data = await response.json();
       console.log('Resposta da API:', data);
-      alert('Formulário enviado com sucesso!');
+      showAlert('success', 'Formulário enviado', 'Sua confirmação de presença foi registrada com sucesso!');
+
+      //redireciona para a página de presentes após 3 segundos
+      setTimeout(function() {
+        window.location.href = '/Gifts';
+      }, 2000); 
+
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
       alert('Erro ao enviar o formulário.');
@@ -47,38 +54,3 @@ export default function useFormulario() {
   }
 }
 
-/* // useFormulario.ts
-import { reactive } from 'vue'
-
-export default function useFormulario() {
-  const form = reactive({
-    nome: '',
-    levarAcompanhante: 'nao',
-    acompanhantes: [] as string[],
-    temRestricao: 'nao',
-    restricao: '',
-  })
-
-  function adicionarAcompanhante() {
-    if (form.acompanhantes.length < 2) {
-      form.acompanhantes.push('')
-    }
-  }
-
-  function removerUltimoAcompanhante() {
-    form.acompanhantes.pop()
-  }
-
-  function enviarFormulario() {
-    console.log('Formulário enviado:', { ...form })
-    alert('Formulário enviado com sucesso!')
-  }
-
-  return {
-    form,
-    adicionarAcompanhante,
-    removerUltimoAcompanhante,
-    enviarFormulario,
-  }
-}
- */
