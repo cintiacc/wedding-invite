@@ -77,7 +77,7 @@ async function enviarFormulario() {
     showAlert('success', 'Registro realizado com sucesso!', 'Você será redirecionado em breve.')
 
     setTimeout(() => {
-        router.push('/addgift')
+        router.push('/Profile')
     }, 3000)
   } else {
     // alerta de erro

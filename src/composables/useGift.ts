@@ -22,7 +22,7 @@ export function useFormGift() {
       showAlert('success', 'Presente criado', 'O presente foi cadastrado com sucesso!')
 
       setTimeout(() => {
-        window.location.href = '/Gifts'
+        window.location.href = '/Profile'
       }, 2000)
     } catch (error) {
       console.error('Erro ao criar presente:', error)
@@ -37,16 +37,31 @@ export function useFormGift() {
         headers: { 'Content-Type': 'application/json' },
       })
 
-      if (!response.ok) throw new Error('Erro ao buscar presente')
+      if (response.status === 404) {
+        showAlert('error', 'Erro', 'Presente não encontrado.')
+        return false
+      }
 
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`)
+      }
+
+      // Agora é seguro parsear como JSON
       const data = await response.json()
 
       form.nomePresente = data.nomePresente
       form.imagemPresente = data.imagemPresente
       form.linkPresente = data.linkPresente
-    } catch (error) {
+
+      return true
+    } catch (error: any) {
       console.error('Erro ao buscar presente:', error)
-      showAlert('error', 'Erro', 'Não foi possível carregar os dados do presente.')
+
+      if (typeof error.message === 'string' && !error.message.includes('Presente não encontrado')) {
+        showAlert('error', 'Erro', 'Não foi possível carregar os dados do presente.')
+      }
+
+      return false
     }
   }
 
@@ -63,7 +78,7 @@ export function useFormGift() {
       showAlert('success', 'Presente atualizado', 'O presente foi atualizado com sucesso!')
 
       setTimeout(() => {
-        window.location.href = '/Gifts'
+        window.location.href = '/Profile'
       }, 2000)
     } catch (error) {
       console.error('Erro ao atualizar presente:', error)
@@ -77,6 +92,10 @@ export function useFormGift() {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
       })
+
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`)
+      }
 
       const data = await response.json()
       console.log('Resposta da API:', data)
