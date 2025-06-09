@@ -111,7 +111,7 @@
     <p class="mb-6 text-gray-700">
       Por favor, confirme sua presença até 01/09/2025
     </p>
-    <ButtonComponent as="router-link" :to="'/invitation'">
+    <ButtonComponent as="router-link" :to="'/'">
       Confirmar Presença
     </ButtonComponent>
   </div>
