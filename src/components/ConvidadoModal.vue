@@ -1,6 +1,6 @@
 <template>
   <div class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-    <div class="bg-white w-full max-w-md p-6 rounded-lg shadow-lg relative">
+    <div class="bg-white w-full max-w-md p-6 rounded-lg shadow-xl relative">
       <!-- Botão fechar -->
       <button
         @click="$emit('fechar')"

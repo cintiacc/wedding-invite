@@ -1,6 +1,6 @@
 <!-- Gifts.vue -->
 <template>
-  <div class="bg-white p-4 rounded-lg shadow">
+  <div class="bg-white p-4 rounded-lg shadow-xl">
     <h2 class="text-lg font-semibold mb-2">Presentes Cadastrados</h2>
     <ul class="text-sm text-gray-600 space-y-2">
       <li
