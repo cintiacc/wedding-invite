@@ -103,23 +103,6 @@
     </div>
   </div>
 </section>
-<section class="bg-[#eddfd4] py-20 px-6 text-center">
-  <h3 class="text-3xl font-playfair mb-10">Confirmação de Presença</h3>
-
-  <div class="bg-[#fffaf0] relative max-w-md mx-auto bg-white border border-gray-300 rounded-xl shadow-lg p-10">
-    <span class="material-symbols-outlined">mail</span>
-    <p class="mb-6 text-gray-700">
-      Por favor, confirme sua presença até 01/09/2025
-    </p>
-    <ButtonComponent as="router-link" :to="'/'">
-      Confirmar Presença
-    </ButtonComponent>
-  </div>
-</section>
-
-<section class="py-20 text-center">
-    <InstagramGallery />
-</section>
 
 <section class="bg-[#eddfd4] py-20 px-6 text-center">
   <h3 class="text-3xl font-playfair mb-10">Quer nos presentar?</h3>
@@ -132,6 +115,24 @@
     </ButtonComponent>
 </section>
 
+<section class="py-20 text-center">
+    <InstagramGallery />
+</section>
+
+<section class="bg-[#eddfd4] py-20 px-6 text-center">
+  <h3 class="text-3xl font-playfair mb-10">Confirmação de Presença</h3>
+
+  <div class="bg-[#fffaf0] relative max-w-md mx-auto bg-white border border-gray-300 rounded-xl shadow-lg p-10">
+    <span class="material-symbols-outlined">mail</span>
+    <p class="mb-6 text-gray-700">
+      Por favor, confirme sua presença até 01/09/2025
+    </p>
+    <ButtonComponent @click="confirmar">
+      Confirmar Presença
+    </ButtonComponent>
+  </div>
+</section>
+
 <section>
   <div>
     <CountdownComponent />
@@ -140,39 +141,55 @@
 
 
 </template>
-<script>
+<script setup lang="ts">
 import InstagramGallery from '../components/InstagramGallery.vue';
 import ButtonComponent from '../components/ButtonComponent.vue';
 import CountdownComponent from '../components/CountdownComponent.vue';
+import { onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';  // IMPORTAR useRouter
+
+const route = useRoute();
+const router = useRouter(); // CRIAR o router
 
 
+const erro = ref('');
 
-export default {
-  name: 'Home',
-  mounted() {
-    const reveal = (el) => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            el.classList.remove('opacity-0', 'translate-y-10');
-            el.classList.add('opacity-100', 'translate-y-0');
-            observer.unobserve(el);
-          }
-        },
-        { threshold: 0.2 }
-      );
-      observer.observe(el);
-    };
+// Refs para as seções
+const historia = ref<HTMLElement | null>(null);
+const noivos = ref<HTMLElement | null>(null);
 
-    reveal(this.$refs.historia);
-    reveal(this.$refs.noivos); // nova seção
-  },
-  components: {
-    InstagramGallery,
-    ButtonComponent,
-    CountdownComponent
-  }
+// IntersectionObserver para efeito de surgimento
+const reveal = (el: HTMLElement | null) => {
+  if (!el) return;
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        el.classList.remove('opacity-0', 'translate-y-10');
+        el.classList.add('opacity-100', 'translate-y-0');
+        observer.unobserve(el);
+      }
+    },
+    { threshold: 0.2 }
+  );
+  observer.observe(el);
 };
+
+// Função para redirecionar para a rota de confirmação
+const confirmar  = () => {
+  const id = (route.query.id as string) || ''
+  if (!id) {
+    alert('ID do convidado não encontrado')
+    return
+  }
+  router.push({ name: 'ConfirmarPresenca', params: { id } })
+}
+
+onMounted(() => {
+  reveal(historia.value);
+  reveal(noivos.value);
+});
 </script>
+
+
 
 
