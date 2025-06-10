@@ -3,17 +3,35 @@ import type { RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Register from '../views/user/Register.vue'
 import Login from '../views/user/Login.vue'
-import OutraPagina from '../views/OutraPagina.vue'
 import Profile from '../views/user/Profile.vue'
 import Gifts from '../views/Gifts.vue'
+import ConfirmarPresenca from '../views/ConfirmarPresenca.vue'
 
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/Gifts', name: 'Gifts', component: Gifts },
-  { path: '/convite/:nome', name: 'Convite', component: OutraPagina },
-  { path: '/Register', name: 'Register', component: Register },
-  { path: '/Login', name: 'Login', component: Login },
+  { path: '/',
+     name: 'Home',
+    component: Home 
+  },
+  {
+    path: '/confirmar/:id',
+    name: 'ConfirmarPresenca',
+    component: ConfirmarPresenca,
+    props: true,
+  },
+  { 
+    path: '/Gifts', 
+    name: 'Gifts', 
+    component: Gifts 
+  },
+  { path: '/Register', 
+    name: 'Register', 
+    component: Register 
+  },
+  { path: '/Login', 
+    name: 'Login', 
+    component: Login 
+  },
   {
     path: '/profile',
     name: 'profile',
