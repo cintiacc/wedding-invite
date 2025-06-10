@@ -1,14 +1,25 @@
 <template>
-  <div class="min-h-screen flex flex-col items-center justify-center bg-[#fffaf0] px-4 py-8">
-    
-    <!-- Título com ícone acima da caixa -->
-    <div class="flex items-center mb-6">
-      <span class="material-symbols-rounded">login</span>
-      <h2 class="text-3xl font-bold text-rose-800">Login</h2>
+  <div class="min-h-screen flex bg-[#fffaf0]">
+
+    <!-- Lado esquerdo: texto + imagem -->
+    <div class="md:flex flex-1 flex-col justify-center items-center rounded-l-2xl p-8">
+      <h1 class="text-3xl font-bold text-rose-800 mb-4 text-center">Bem-vindo(a) de volta!</h1>
+      <p class="text-rose-700 max-w-sm mb-6 text-left">
+        Faça login para acessar o dashboard dos noivos.
+      </p>
+      <img src="/images/car-bride.jpeg" alt="Imagem ilustrativa" class="max-w-xs h-auto rounded-lg shadow-lg" />
     </div>
 
-    <!-- Formulário -->
-    <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg border border-neutral-100">
+    <!-- Lado direito: formulário -->
+    <div class="flex-1 bg-white p-8 rounded-2xl shadow-lg border border-neutral-100 flex flex-col justify-center">
+      
+      <!-- Título com ícone -->
+      <div class="flex items-center mb-6">
+        <span class="material-symbols-rounded text-3xl text-rose-800 mr-2">login</span>
+        <h2 class="text-3xl font-bold text-rose-800">Login</h2>
+      </div>
+
+      <!-- Formulário -->
       <form @submit.prevent="enviarFormulario" class="space-y-6">
         <div>
           <label for="email" class="block text-gray-700 font-medium mb-2">E-mail</label>
@@ -33,10 +44,10 @@
 </template>
 
 
+
 <script setup lang="ts">
 import { reactive } from 'vue'
 import ButtonComponent from '../../components/ButtonComponent.vue'
-import BackButtonComponent from '../../components/BackButtonComponent.vue'
 import { useLogin } from '../../composables/useLogin'
 import { showAlert } from '../../utils/alert'   
 import { useRouter } from 'vue-router'
@@ -55,7 +66,7 @@ async function enviarFormulario() {
   const sucesso = await login(form.email, form.senha)
   if (sucesso) {
     showAlert('success', 'Login realizado com sucesso!')
-    router.push({ name: 'AddGift' })
+    router.push({ name: 'profile' })
  
   } else {
     console.log('Falha no login:', error.value)

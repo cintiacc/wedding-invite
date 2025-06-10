@@ -21,9 +21,8 @@
 
       <!-- Menu -->
     <nav class="px-2 pt-4 space-y-1">
-      <SidebarItem icon="🏠" label="Dashboard" to="/Dashboard" :collapsed="collapsed" />
+      <SidebarItem icon="🏠" label="Dashboard" to="/profile" :collapsed="collapsed" />
       <SidebarItem icon="👤" label="Convite" to="/" :collapsed="collapsed" />
-      <SidebarItem icon="❓" label="Ajuda" to="/ajuda" :collapsed="collapsed" />
     </nav>
     </div>    
   </aside>
