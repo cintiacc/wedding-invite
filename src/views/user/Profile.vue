@@ -57,9 +57,15 @@ function abrirCadastroPresente() {
   mostrarModalCadastroPresente.value = true
 }
 
-async function aoCadastrarConvidado() {
+// Aqui, ao receber o novo convidado do modal, adicionamos diretamente no array
+function aoCadastrarConvidado(novoConvidado) {
   mostrarModalCadastroConvidado.value = false
-  await carregarConvidados()
+  if (novoConvidado && novoConvidado.id) {
+    convidados.value.push(novoConvidado)
+  } else {
+    // Caso não tenha o convidado (por algum motivo), recarregue tudo
+    carregarConvidados()
+  }
 }
 
 onMounted(async () => {

@@ -56,9 +56,12 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
+import { defineEmits } from 'vue'
 import ButtonComponent from '../components/ButtonComponent.vue'
 import { useInvite } from '../composables/useInvite'
-import { showAlert } from '../utils/alert' // 👈 importa seu alerta
+import { showAlert } from '../utils/alert'
+
+const emit = defineEmits(['fechar', 'sucesso']) // Definindo eventos emitidos
 
 const form = reactive({
   nome: '',
@@ -73,15 +76,19 @@ const cadastrarConvidadoHandler = async () => {
     nome: form.nome,
     telefone: form.Telefone,
   })
-    if (success.value) {
+
+  if (success.value) {
     showAlert('success', 'Sucesso!', 'Convidado cadastrado com sucesso!').then(() => {
-        form.nome = ''
-        form.Telefone = ''
-        form.Confirmado = '1'
+
+      emit('sucesso', { nome: form.nome, telefone: form.Telefone }) 
+
+      form.nome = ''
+      form.Telefone = ''
+      form.Confirmado = '1'
     })
-    } else if (error.value) {
-        showAlert('error', 'Erro ao cadastrar', error.value)
-    }
+  } else if (error.value) {
+    showAlert('error', 'Erro ao cadastrar', error.value)
+  }
 }
 </script>
 

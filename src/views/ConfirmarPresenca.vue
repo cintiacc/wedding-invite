@@ -27,15 +27,16 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'  // <-- importe useRouter também
 import { usePresenca } from '../composables/usePresenca'
 import ButtonComponent from '../components/ButtonComponent.vue'
 import { showAlert } from '../utils/alert'
 
+const route = useRoute()
+const router = useRouter()  // <-- crie o router aqui
+const convidado = ref<any>(null)
 
 const { carregarConvidado, confirmarPresenca } = usePresenca()
-const route = useRoute()
-const convidado = ref<any>(null)
 
 onMounted(async () => {
   try {
@@ -55,9 +56,12 @@ const confirmar = async () => {
     convidado.value.confirmado = true
 
     await showAlert('success', 'Presença confirmada!', 'Obrigado por confirmar sua presença no evento.')
+
+    router.push('/')  // <-- redireciona após clicar no OK do alerta
   } catch (error) {
     await showAlert('error', 'Erro', 'Erro ao confirmar presença.')
   }
 }
+
 
 </script>
