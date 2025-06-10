@@ -21,7 +21,7 @@
               rel="noopener noreferrer"
               aria-label="Enviar WhatsApp"
             >
-              <!-- seu SVG whatsapp -->
+            <i class="fab fa-whatsapp text-green-500 text-lg"></i>
             </a>
           </td>
 
