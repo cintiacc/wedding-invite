@@ -21,8 +21,8 @@
 
       <!-- Menu -->
     <nav class="px-2 pt-4 space-y-1">
-      <SidebarItem icon="🏠" label="Dashboard" to="/profile" :collapsed="collapsed" />
-      <SidebarItem icon="👤" label="Convite" to="/" :collapsed="collapsed" />
+      <SidebarItem icon="fa-solid fa-house" label="Dashboard" to="/profile" :collapsed="collapsed" />
+      <SidebarItem icon="fa-solid fa-user" label="Convite" to="/" :collapsed="collapsed" />
     </nav>
     </div>    
   </aside>
