@@ -53,7 +53,11 @@
             {{ editando ? 'Atualizar' : 'Salvar' }}
           </ButtonComponent>
 
-          <button type="button" class="btn btn-danger" @click="handleDelete">
+          <button
+            type="button"
+            class="bg-red-600 text-white rounded-full  ml-[3px] px-4 py-2 rounded hover:bg-red-700"
+            @click="handleDelete"
+          >
             Excluir Presente
           </button>
         </div>
